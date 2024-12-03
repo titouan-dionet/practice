@@ -19,3 +19,8 @@ plot(x = pantheria_data$`5-1_AdultBodyMass_g`, y = pantheria_data$`18-1_BasalMet
 ggplot(pantheria_data) +
   aes(x = `5-1_AdultBodyMass_g`, y = `18-1_BasalMetRate_mLO2hr`) +
   geom_point()
+
+# New graph
+ggplot(pantheria_data) +
+  aes(x = MSW05_Genus) +
+  geom_bar()
