@@ -3,7 +3,7 @@
 #' @description 
 #' This function read the Wildfinder data files (csv files).
 #' 
-#' @return This function returns a list containing the datasets (`data_frame`).
+#' @return This function returns a list containing the datasets (`tibble`).
 #' 
 #' @export
 #' 
@@ -18,6 +18,9 @@ wildfinder_read = function() {
   
   for (filename in filenames) {
     dest_file = here::here(path, filename)
+    data_name = filename |> 
+      stringr::str_replace(".csv", "") |> 
+      stringr::str_replace("wildfinder-", "")
     list_data = c(list_data, 
                   list(readr::read_csv(file = dest_file)))
   }
