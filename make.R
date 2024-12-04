@@ -15,4 +15,7 @@ devtools::load_all()
 # source(here::here("analyses", "01_download_data.R"))
 
 ## Read data ----
-source(here::here("analyses", "02_ursidae_analysis.R"))
+# source(here::here("analyses", "02_ursidae_analysis.R"))
+
+## Quarto ----
+quarto::quarto_render(input = "index.qmd")
