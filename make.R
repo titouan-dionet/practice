@@ -12,7 +12,7 @@ devtools::load_all()
 # Run project ----
 
 ## Download raw data ----
-source(here::here("analyses", "01_download_data.R"))
+# source(here::here("analyses", "01_download_data.R"))
 
 ## Read data ----
-source(here::here("analyses", "02_read_data.R"))
+source(here::here("analyses", "02_ursidae_analysis.R"))
