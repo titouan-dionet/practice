@@ -1,0 +1,59 @@
+---
+title: "Ursidae Analysis"
+author: "Titouan Dionet"
+format: html
+execute: 
+  echo: true
+---
+
+```{r}
+#| echo: false
+# ---- project execution
+targets::tar_config_set(
+  store  = "outputs/pipeline/",
+  script = "analyses/pipeline.R"
+)
+```
+
+
+This script will study the **Ursidae** family and their ecoregions.
+
+## Read the WildFinder datasets
+
+```{r}
+#| label: read-data
+targets::tar_load(wildfinder_data)
+knitr::kable(head(wildfinder_data[[1]]))
+```
+
+## Select Ursidae family
+
+```{r}
+#| label: select-data
+targets::tar_load(ursidae_data)
+knitr::kable(ursidae_data)
+```
+
+## Join tables
+
+```{r}
+#| label: join-tables
+targets::tar_load(joined_data)
+knitr::kable(head(joined_data))
+```
+
+## Count ecoregions occurences
+
+```{r}
+#| label: count-ecor
+targets::tar_load(eco_ursidae)
+knitr::kable(head(eco_ursidae))
+```
+
+## Plot graph
+
+```{r}
+#| label: plot-graph
+targets::tar_load(plot_eco)
+plot_eco
+```
