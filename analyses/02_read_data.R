@@ -18,3 +18,7 @@ data = join_tables(ursidae_data, data_ecoregions = wildfinder_list[[1]], data_ec
 
 # Count ecoregions occurences ----
 eco_ursidae = count_ecoregions(data)
+
+# Plot graph ----
+PLOT = plot_ecoregions(eco_ursidae)
+PLOT
