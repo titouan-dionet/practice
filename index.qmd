@@ -6,46 +6,54 @@ execute:
   echo: true
 ---
 
-This script will study the **Ursidae** family and their ecoregions.
 ```{r}
-#| label: run-make
 #| echo: false
-source("make.R")
+# ---- project execution
+targets::tar_config_set(
+  store  = "outputs/pipeline/",
+  script = "analyses/pipeline.R"
+)
 ```
 
+
+This script will study the **Ursidae** family and their ecoregions.
 
 ## Read the WildFinder datasets
 
 ```{r}
 #| label: read-data
-wildfinder_list = wildfinder_read()
+targets::tar_load(wildfinder_data)
+knitr::kable(head(wildfinder_data[[1]]))
 ```
 
 ## Select Ursidae family
 
 ```{r}
 #| label: select-data
-ursidae_data = select_ursidae(wildfinder_list[[3]])
+targets::tar_load(ursidae_data)
+knitr::kable(ursidae_data)
 ```
 
 ## Join tables
 
 ```{r}
 #| label: join-tables
-data = join_tables(ursidae_data, data_ecoregions = wildfinder_list[[1]], data_ecor_spec = wildfinder_list[[2]])
+targets::tar_load(joined_data)
+knitr::kable(head(joined_data))
 ```
 
 ## Count ecoregions occurences
 
 ```{r}
 #| label: count-ecor
-eco_ursidae = count_ecoregions(data)
+targets::tar_load(eco_ursidae)
+knitr::kable(head(eco_ursidae))
 ```
 
 ## Plot graph
 
 ```{r}
 #| label: plot-graph
-PLOT = plot_ecoregions(eco_ursidae)
-PLOT
+targets::tar_load(plot_eco)
+plot_eco
 ```

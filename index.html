@@ -104,68 +104,359 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>This script will study the <strong>Ursidae</strong> family and their ecoregions.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>ℹ Loading practice
-Le chargement a nécessité le package : data.table
-
-Le chargement a nécessité le package : ggplot2</code></pre>
-</div>
-</div>
 <section id="read-the-wildfinder-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="read-the-wildfinder-datasets">Read the WildFinder datasets</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wildfinder_list <span class="ot">=</span> <span class="fu">wildfinder_read</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 798 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (4): ecoregion_id, ecoregion, realm, biome
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Rows: 350045 Columns: 2
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): ecoregion_id
-dbl (1): species_id
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Rows: 4936 Columns: 8
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (7): class, order, family, genus, species, common, sci_name
-dbl (1): species_id
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(wildfinder_data)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(wildfinder_data[[<span class="dv">1</span>]]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 36%">
+<col style="width: 10%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ecoregion_id</th>
+<th style="text-align: left;">ecoregion</th>
+<th style="text-align: left;">realm</th>
+<th style="text-align: left;">biome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AA0106</td>
+<td style="text-align: left;">Halmahera rain forests</td>
+<td style="text-align: left;">Australasia</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AA0107</td>
+<td style="text-align: left;">Huon Peninsula montane rain forests</td>
+<td style="text-align: left;">Australasia</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AA0105</td>
+<td style="text-align: left;">Central Range montane rain forests</td>
+<td style="text-align: left;">Australasia</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AA0102</td>
+<td style="text-align: left;">Banda Sea Islands moist deciduous forests</td>
+<td style="text-align: left;">Australasia</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AA0103</td>
+<td style="text-align: left;">Biak-Numfoor rain forests</td>
+<td style="text-align: left;">Australasia</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AA0104</td>
+<td style="text-align: left;">Buru rain forests</td>
+<td style="text-align: left;">Australasia</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
 <section id="select-ursidae-family" class="level2">
 <h2 class="anchored" data-anchor-id="select-ursidae-family">Select Ursidae family</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ursidae_data <span class="ot">=</span> <span class="fu">select_ursidae</span>(wildfinder_list[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(ursidae_data)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(ursidae_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">species_id</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">order</th>
+<th style="text-align: left;">family</th>
+<th style="text-align: left;">genus</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">common</th>
+<th style="text-align: left;">sci_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">14932</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Ailuropoda</td>
+<td style="text-align: left;">melanoleuca</td>
+<td style="text-align: left;">Giant Panda</td>
+<td style="text-align: left;">Ailuropoda melanoleuca</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14934</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Helarctos</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">Sun Bear</td>
+<td style="text-align: left;">Helarctos malayanus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14935</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Melursus</td>
+<td style="text-align: left;">ursinus</td>
+<td style="text-align: left;">Sloth Bear</td>
+<td style="text-align: left;">Melursus ursinus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14936</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Tremarctos</td>
+<td style="text-align: left;">ornatus</td>
+<td style="text-align: left;">Spectacled Bear</td>
+<td style="text-align: left;">Tremarctos ornatus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14937</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Ursus</td>
+<td style="text-align: left;">americanus</td>
+<td style="text-align: left;">American Black Bear</td>
+<td style="text-align: left;">Ursus americanus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14938</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Ursus</td>
+<td style="text-align: left;">arctos</td>
+<td style="text-align: left;">Brown Bear</td>
+<td style="text-align: left;">Ursus arctos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27926</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Ursus</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Ursus malayanus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14940</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Ursus</td>
+<td style="text-align: left;">thibetanus</td>
+<td style="text-align: left;">Asiatic Black Bear</td>
+<td style="text-align: left;">Ursus thibetanus</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="join-tables" class="level2">
 <h2 class="anchored" data-anchor-id="join-tables">Join tables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">join_tables</span>(ursidae_data, <span class="at">data_ecoregions =</span> wildfinder_list[[<span class="dv">1</span>]], <span class="at">data_ecor_spec =</span> wildfinder_list[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(joined_data)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(joined_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 18%">
+<col style="width: 5%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">species_id</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">order</th>
+<th style="text-align: left;">family</th>
+<th style="text-align: left;">genus</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">common</th>
+<th style="text-align: left;">sci_name</th>
+<th style="text-align: left;">ecoregion_id</th>
+<th style="text-align: left;">ecoregion</th>
+<th style="text-align: left;">realm</th>
+<th style="text-align: left;">biome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">14940</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Ursus</td>
+<td style="text-align: left;">thibetanus</td>
+<td style="text-align: left;">Asiatic Black Bear</td>
+<td style="text-align: left;">Ursus thibetanus</td>
+<td style="text-align: left;">IM0141</td>
+<td style="text-align: left;">Northern Vietnam lowland rain forests</td>
+<td style="text-align: left;">Indo-Malay</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14934</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Helarctos</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">Sun Bear</td>
+<td style="text-align: left;">Helarctos malayanus</td>
+<td style="text-align: left;">IM0141</td>
+<td style="text-align: left;">Northern Vietnam lowland rain forests</td>
+<td style="text-align: left;">Indo-Malay</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14934</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Helarctos</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">Sun Bear</td>
+<td style="text-align: left;">Helarctos malayanus</td>
+<td style="text-align: left;">IM0157</td>
+<td style="text-align: left;">Sumatran freshwater swamp forests</td>
+<td style="text-align: left;">Indo-Malay</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14934</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Helarctos</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">Sun Bear</td>
+<td style="text-align: left;">Helarctos malayanus</td>
+<td style="text-align: left;">IM0158</td>
+<td style="text-align: left;">Sumatran lowland rain forests</td>
+<td style="text-align: left;">Indo-Malay</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14934</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Helarctos</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">Sun Bear</td>
+<td style="text-align: left;">Helarctos malayanus</td>
+<td style="text-align: left;">IM0159</td>
+<td style="text-align: left;">Sumatran montane rain forests</td>
+<td style="text-align: left;">Indo-Malay</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14934</td>
+<td style="text-align: left;">Mammalia</td>
+<td style="text-align: left;">Carnivora</td>
+<td style="text-align: left;">Ursidae</td>
+<td style="text-align: left;">Helarctos</td>
+<td style="text-align: left;">malayanus</td>
+<td style="text-align: left;">Sun Bear</td>
+<td style="text-align: left;">Helarctos malayanus</td>
+<td style="text-align: left;">IM0160</td>
+<td style="text-align: left;">Sumatran peat swamp forests</td>
+<td style="text-align: left;">Indo-Malay</td>
+<td style="text-align: left;">Tropical and Subtropical Moist Broadleaf Forests</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="count-ecoregions-occurences" class="level2">
 <h2 class="anchored" data-anchor-id="count-ecoregions-occurences">Count ecoregions occurences</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eco_ursidae <span class="ot">=</span> <span class="fu">count_ecoregions</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(eco_ursidae)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(eco_ursidae))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sci_name</th>
+<th style="text-align: right;">occurences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ursus thibetanus</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Helarctos malayanus</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Melursus ursinus</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tremarctos ornatus</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ursus arctos</td>
+<td style="text-align: right;">139</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ursus americanus</td>
+<td style="text-align: right;">82</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="plot-graph" class="level2">
 <h2 class="anchored" data-anchor-id="plot-graph">Plot graph</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>PLOT <span class="ot">=</span> <span class="fu">plot_ecoregions</span>(eco_ursidae)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>PLOT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(plot_eco)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plot_eco</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

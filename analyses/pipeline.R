@@ -21,6 +21,6 @@ list(
   tar_target(name = plot_eco, command = plot_ecoregions(eco_ursidae)),
   
   # Render quarto
-  tarchetypes::tar_quarto(report, "report.qmd")
+  tarchetypes::tar_quarto(index, "index.qmd")
   
 )

@@ -1,9 +1,10 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|e1f5a22e52c4189d|||||||||||||||
+.Random.seed|object|0e1dccfc12abaf36|||||||||||||||
 count_ecoregions|function|71e616353dc94345|||||||||||||||
 dl_pantheria_data|function|e836c01ce4481f3f|||||||||||||||
 dl_wildfinder_data|function|418e6ea0f87267b1|||||||||||||||
 eco_ursidae|stem|c943f6a30646f6c1|096e824e53fa47e5|efff69e4b10f8e74|585579032||t20061.6751140359s|27fad397f780b584|276|rds|local|vector|||0||
+index|stem|c1e34c0ef382caa6|72efd1f0f0c42c87|3e8af3aef9215136|554519753|index.html*index_files*index.qmd|t20061.7056978481s|1e9933b71ac3bb12|899093|file|local|vector|||4.55||
 join_tables|function|3f80268951b9f0a3|||||||||||||||
 joined_data|stem|c0662eb73946b406|debbb04da660fd40|31e4c727b11e3bed|1614141691||t20061.6759370875s|761d89cb64e95f90|6875|rds|local|vector|||0.02||
 plot_eco|stem|5068163bb8227efa|84b65c884782c4b1|b111ada729a45893|-1321175183||t20061.6751147932s|fa3d1c6e5e837c2f|89888|rds|local|vector|||0.02||
