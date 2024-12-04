@@ -1,6 +1,6 @@
-# Read data
+# Ursidae analysis
 #
-# This script will read the Wilfinder datasets.
+# This script will study the Ursidae family and their ecoregions.
 # 
 # All functions used in the script have been developed for this project
 # and can be found in the folder R/.
