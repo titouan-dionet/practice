@@ -7,5 +7,14 @@
 #
 # Titouan Dionet <titouan.dionet@univ-lorraine.fr>
 
-# Read WildFinder datasets
+# Read WildFinder datasets ----
 wildfinder_list = wildfinder_read()
+
+# Select Ursidae ----
+ursidae_data = select_ursidae(wildfinder_list[[3]])
+
+# Join tables ----
+data = join_tables(ursidae_data, data_ecoregions = wildfinder_list[[1]], data_ecor_spec = wildfinder_list[[2]])
+
+# Count ecoregions occurences ----
+eco_ursidae = count_ecoregions(data)
