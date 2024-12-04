@@ -7,7 +7,7 @@
 devtools::install_deps(upgrade = "never")
 
 ## Load packages & functions ----
-devtools::load_all()
+# devtools::load_all() # this line will not be run when using target
 
 # Run project ----
 
@@ -18,4 +18,20 @@ devtools::load_all()
 # source(here::here("analyses", "02_ursidae_analysis.R"))
 
 ## Quarto ----
-quarto::quarto_render(input = "index.qmd")
+# quarto::quarto_render(input = "index.qmd")
+
+## Target ----
+# ---- project execution
+targets::tar_config_set(
+  store  = "outputs/pipeline/",
+  script = "analyses/pipeline.R"
+)
+
+# Before make
+tar_visnetwork()
+
+# Make
+tar_make()
+
+# After make
+tar_visnetwork()
