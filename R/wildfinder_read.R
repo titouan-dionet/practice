@@ -18,9 +18,7 @@ wildfinder_read = function() {
   
   for (filename in filenames) {
     dest_file = here::here(path, filename)
-    data_name = filename |> 
-      stringr::str_replace(".csv", "") |> 
-      stringr::str_replace("wildfinder-", "")
+
     list_data = c(list_data, 
                   list(readr::read_csv(file = dest_file)))
   }
