@@ -1,0 +1,16 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+.Random.seed|object|e1f5a22e52c4189d|||||||||||||||
+count_ecoregions|function|71e616353dc94345|||||||||||||||
+dl_pantheria_data|function|e836c01ce4481f3f|||||||||||||||
+dl_wildfinder_data|function|418e6ea0f87267b1|||||||||||||||
+eco_ursidae|stem|c943f6a30646f6c1|096e824e53fa47e5|efff69e4b10f8e74|585579032||t20061.6751140359s|27fad397f780b584|276|rds|local|vector|||0||
+join_tables|function|3f80268951b9f0a3|||||||||||||||
+joined_data|stem|c0662eb73946b406|debbb04da660fd40|31e4c727b11e3bed|1614141691||t20061.6759370875s|761d89cb64e95f90|6875|rds|local|vector|||0.02||
+plot_eco|stem|5068163bb8227efa|84b65c884782c4b1|b111ada729a45893|-1321175183||t20061.6751147932s|fa3d1c6e5e837c2f|89888|rds|local|vector|||0.02||
+plot_ecoregions|function|cd2b273818bb6c86|||||||||||||||
+report|stem|67d91903e8c938bd|754576281f35e798|3e8af3aef9215136|787668912|report.html*report_files*report.qmd|t20061.6968182773s|85a1f2518127d138|899104|file|local|vector|||4.62||
+select_ursidae|function|1feaab040effe09c|||||||||||||||
+ursidae_data|stem|f625b3ddb4b28b82|14970b7cc8fc88d1|c8585f2cab52a62e|1655257398||t20061.6762799581s|ae115129f5eed8a3|593|rds|local|vector|||0||
+wildfinder_data|stem|f0c02e02403e8859|331e6ca451b217c8|19948a88968cf8e3|116422949||t20061.6701565685s|24d542dcbbc17c2b|861645|rds|local|vector|||0.43||
+wildfinder_read|function|d212291ac9c317ff|||||||||||||||
+wilfinder_data|stem|f0c02e02403e8859|331e6ca451b217c8|19948a88968cf8e3|-1063697||t20061.6690958506s|24d542dcbbc17c2b|861645|rds|local|vector|||0.56||
