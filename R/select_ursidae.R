@@ -10,6 +10,6 @@
 #' 
 
 select_ursidae = function(data) {
-  data = data |> as.data.table()
+  setDT(data)
   return(data[family == "Ursidae"])
 }
