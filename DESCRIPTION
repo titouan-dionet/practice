@@ -26,4 +26,5 @@ Imports:
     utils
 Depends: 
     data.table,
-    ggplot2
+    ggplot2,
+    targets
