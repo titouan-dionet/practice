@@ -3,7 +3,7 @@ title: "Ursidae Analysis"
 author: "Titouan Dionet"
 format: html
 execute: 
-  echo: true
+  echo: false
 ---
 
 ```{r}
