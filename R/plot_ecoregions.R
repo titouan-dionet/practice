@@ -5,12 +5,14 @@
 #' 
 #' @return This function returns a data.table which species names and number 
 #' of ecoregions (`data.table`).
-#' 
+#'  
 #' @export
+#' 
+#' @import ggplot2
 #' 
 
 count_ecoregions = function(data) {
-  setDT(data)
+  data.table::setDT(data)
   data[, .(occurences = .N), by = sci_name]
 }
 

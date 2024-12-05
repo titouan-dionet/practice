@@ -28,10 +28,10 @@ targets::tar_config_set(
 )
 
 # Before make
-tar_visnetwork()
+targets::tar_visnetwork()
 
 # Make
-tar_make()
+targets::tar_make()
 
 # After make
-tar_visnetwork()
+targets::tar_visnetwork()

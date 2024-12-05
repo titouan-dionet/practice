@@ -10,6 +10,6 @@
 #' 
 
 count_ecoregions = function(data) {
-  setDT(data)
+  data.table::setDT(data)
   data[, .(occurences = .N), by = sci_name]
 }
