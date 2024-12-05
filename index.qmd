@@ -22,7 +22,7 @@ This script will study the **Ursidae** family and their ecoregions.
 
 ```{r}
 #| label: read-data
-targets::tar_load(wildfinder_data)
+targets::tar_load("wildfinder_data")
 knitr::kable(head(wildfinder_data[[1]]))
 ```
 
@@ -30,7 +30,7 @@ knitr::kable(head(wildfinder_data[[1]]))
 
 ```{r}
 #| label: select-data
-targets::tar_load(ursidae_data)
+targets::tar_load("ursidae_data")
 knitr::kable(ursidae_data)
 ```
 
@@ -38,7 +38,7 @@ knitr::kable(ursidae_data)
 
 ```{r}
 #| label: join-tables
-targets::tar_load(joined_data)
+targets::tar_load("joined_data")
 knitr::kable(head(joined_data))
 ```
 
@@ -46,7 +46,7 @@ knitr::kable(head(joined_data))
 
 ```{r}
 #| label: count-ecor
-targets::tar_load(eco_ursidae)
+targets::tar_load("eco_ursidae")
 knitr::kable(head(eco_ursidae))
 ```
 
@@ -54,6 +54,6 @@ knitr::kable(head(eco_ursidae))
 
 ```{r}
 #| label: plot-graph
-targets::tar_load(plot_eco)
+targets::tar_load("plot_eco")
 plot_eco
 ```
